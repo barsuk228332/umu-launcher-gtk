@@ -1,0 +1,414 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: umulauncher 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: ru\n"
+"PO-Revision-Date: 2026-11-25 19:00+0100\n"
+"Last-Translator: barsuk\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "A small GTK4 frontend for umu-launcher."
+msgstr "Небольшой GTK4-интерфейс для umu-launcher."
+
+msgid "Choose the game executable"
+msgstr "Выберите исполняемый файл игры"
+
+msgid "GAMEID suggestion applied: %s"
+msgstr "Подставлен GAMEID: %s"
+
+msgid "Launching %s…"
+msgstr "Запуск «%s»…"
+
+msgid "Stopping game…"
+msgstr "Останавливаем игру…"
+
+msgid "none"
+msgstr "нет"
+
+msgid "System language"
+msgstr "Язык системы"
+
+msgid "line %d: expected KEY=VALUE"
+msgstr "строка %d: ожидается KEY=VALUE"
+
+msgid "line %d: invalid variable name"
+msgstr "строка %d: недопустимое имя переменной"
+
+msgid "Environment variables"
+msgstr "Переменные окружения"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "One KEY=VALUE pair per line. Lines starting with # are ignored."
+msgstr "По одной паре KEY=VALUE в строке. Строки, начинающиеся с #, игнорируются."
+
+msgid "Find a GAMEID"
+msgstr "Найти GAMEID"
+
+msgid "Game title"
+msgstr "Название игры"
+
+msgid "Loading umu-database…"
+msgstr "Загружаем umu-database…"
+
+msgid "umu-database is empty. Open Settings and press “Update umu-database”."
+msgstr "База umu-database пуста. Откройте настройки и нажмите «Обновить umu-database»."
+
+msgid "%d games in the database"
+msgstr "Игр в базе: %d"
+
+msgid "Nothing found"
+msgstr "Ничего не найдено"
+
+msgid "%d matches"
+msgstr "Совпадений: %d"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Interface language"
+msgstr "Язык интерфейса"
+
+msgid "Runtime"
+msgstr "Среда выполнения"
+
+msgid "Defaults applied when a game does not override them."
+msgstr "Значения по умолчанию, если игра не переопределяет их."
+
+msgid "Default Proton"
+msgstr "Proton по умолчанию"
+
+msgid "Used for new games and prefix creation"
+msgstr "Используется для новых игр и создания префиксов"
+
+msgid "Prefix directory"
+msgstr "Каталог префиксов"
+
+msgid "Debug logs"
+msgstr "Отладочные логи"
+
+msgid "Set UMU_LOG=1 and keep verbose output in the log window"
+msgstr "Включает UMU_LOG=1 и подробный вывод в окне логов"
+
+msgid "Cover art"
+msgstr "Обложки"
+
+msgid "SteamGridDB needs a free API key from steamgriddb.com/profile/preferences/api"
+msgstr "Для SteamGridDB нужен бесплатный API-ключ: steamgriddb.com/profile/preferences/api"
+
+msgid "SteamGridDB API key"
+msgstr "API-ключ SteamGridDB"
+
+msgid "Steam CDN fallback"
+msgstr "Резервный Steam CDN"
+
+msgid "Download free square covers when SteamGridDB finds nothing"
+msgstr "Скачивать бесплатные обложки, если SteamGridDB ничего не нашёл"
+
+msgid "umu-database"
+msgstr "umu-database"
+
+msgid "Update umu-database"
+msgstr "Обновить umu-database"
+
+msgid "Used to suggest GAMEID values for protonfixes"
+msgstr "Нужна для подсказок GAMEID для protonfixes"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "About"
+msgstr "О программе"
+
+msgid "A GTK4 frontend for umu-launcher. Version %s"
+msgstr "GTK4-интерфейс для umu-launcher. Версия %s"
+
+msgid "Open data folder"
+msgstr "Открыть папку с данными"
+
+msgid "Restart umulauncher to apply the language"
+msgstr "Перезапустите umulauncher, чтобы применить язык"
+
+msgid "Updating…"
+msgstr "Обновление…"
+
+msgid "Update failed"
+msgstr "Не удалось обновить"
+
+msgid "%d records downloaded"
+msgstr "Загружено записей: %d"
+
+msgid "Supported files"
+msgstr "Поддерживаемые файлы"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Download cover art"
+msgstr "Загрузка обложки"
+
+msgid "Looking for “%s” on SteamGridDB…"
+msgstr "Ищем «%s» в SteamGridDB…"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "never played"
+msgstr "ещё не играли"
+
+msgid "%d h"
+msgstr "%d ч"
+
+msgid "%d min"
+msgstr "%d мин"
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Stop"
+msgstr "Стоп"
+
+msgid "Logs"
+msgstr "Логи"
+
+msgid "Export a .desktop shortcut"
+msgstr "Создать ярлык .desktop"
+
+msgid "Launch"
+msgstr "Запуск"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Store"
+msgstr "Магазин"
+
+msgid "GAMEID (protonfixes)"
+msgstr "GAMEID (protonfixes)"
+
+msgid "Search umu-database"
+msgstr "Поиск в umu-database"
+
+msgid "Launch arguments"
+msgstr "Аргументы запуска"
+
+msgid "Wine prefix"
+msgstr "Wine-префикс"
+
+msgid "Each game should use its own prefix. Windows installers and registry live here."
+msgstr "У каждой игры должен быть свой префикс. Здесь хранятся установщики Windows и реестр."
+
+msgid "Prefix folder"
+msgstr "Папка префикса"
+
+msgid "Create prefix"
+msgstr "Создать префикс"
+
+msgid "Open in file manager"
+msgstr "Открыть в файловом менеджере"
+
+msgid "Delete prefix"
+msgstr "Удалить префикс"
+
+msgid "Size on disk"
+msgstr "Занято на диске"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Cover"
+msgstr "Обложка"
+
+msgid "placeholder"
+msgstr "заглушка"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Choose a local image"
+msgstr "Выбрать локальное изображение"
+
+msgid "Extra options"
+msgstr "Дополнительно"
+
+msgid "Run the game inside the gamescope compositor"
+msgstr "Запускать игру внутри композитора gamescope"
+
+msgid "Resolution"
+msgstr "Разрешение"
+
+msgid "Frame limit"
+msgstr "Ограничение FPS"
+
+msgid "Unlimited"
+msgstr "Без ограничения"
+
+msgid "Fullscreen"
+msgstr "Полный экран"
+
+msgid "Extra gamescope flags"
+msgstr "Дополнительные флаги gamescope"
+
+msgid "Set MANGOHUD=1 for this game"
+msgstr "Включить MANGOHUD=1 для этой игры"
+
+msgid "Install components into the prefix (requires GE-Proton or UMU-Proton)"
+msgstr "Устанавливать компоненты в префикс (нужен GE-Proton или UMU-Proton)"
+
+msgid "Run…"
+msgstr "Запустить…"
+
+msgid "Menu shortcut"
+msgstr "Ярлык в меню"
+
+msgid "Add this game to the KDE/GNOME application menu"
+msgstr "Добавить игру в меню приложений KDE/GNOME"
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "Danger zone"
+msgstr "Опасная зона"
+
+msgid "Remove from library"
+msgstr "Убрать из библиотеки"
+
+msgid "The prefix and game files are kept on disk"
+msgstr "Префикс и файлы игры остаются на диске"
+
+msgid "Remove"
+msgstr "Убрать"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Show log folder"
+msgstr "Показать папку логов"
+
+msgid "Running"
+msgstr "Работает"
+
+msgid "This game is already running"
+msgstr "Игра уже запущена"
+
+msgid "Game exited"
+msgstr "Игра завершилась"
+
+msgid "Game exited with code %d"
+msgstr "Игра завершилась с кодом %d"
+
+msgid "GAMEID set to %s"
+msgstr "GAMEID изменён на %s"
+
+msgid "not created"
+msgstr "не создан"
+
+msgid "Creating prefix…"
+msgstr "Создаём префикс…"
+
+msgid "Prefix ready"
+msgstr "Префикс готов"
+
+msgid "Prefix creation failed (code %d). Try another Proton build."
+msgstr "Не удалось создать префикс (код %d). Попробуйте другую сборку Proton."
+
+msgid "Prefix does not exist"
+msgstr "Префикс не существует"
+
+msgid "Refusing to delete this folder"
+msgstr "Отказываюсь удалять эту папку"
+
+msgid "Deleting prefix…"
+msgstr "Удаляем префикс…"
+
+msgid "Prefix deleted"
+msgstr "Префикс удалён"
+
+msgid "Delete this prefix?"
+msgstr "Удалить этот префикс?"
+
+msgid "Everything inside %s will be removed, including saves stored in the prefix."
+msgstr "Всё содержимое %s будет удалено, включая сохранения внутри префикса."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "No cover found"
+msgstr "Обложка не найдена"
+
+msgid "Choose a cover image"
+msgstr "Выберите обложку"
+
+msgid "Run winetricks"
+msgstr "Запустить winetricks"
+
+msgid "Space separated verbs, for example: vcrun2022 d3dx9"
+msgstr "Вербы через пробел, например: vcrun2022 d3dx9"
+
+msgid "Run"
+msgstr "Запустить"
+
+msgid "No verbs given"
+msgstr "Не указаны вербы"
+
+msgid "winetricks finished"
+msgstr "winetricks завершён"
+
+msgid "Shortcut created: %s"
+msgstr "Ярлык создан: %s"
+
+msgid "Remove “%s” from the library?"
+msgstr "Убрать «%s» из библиотеки?"
+
+msgid "The executable, prefix and saves are not touched."
+msgstr "Исполняемый файл, префикс и сохранения не затрагиваются."
+
+msgid "Log: %s"
+msgstr "Лог: %s"
+
+msgid "Copy all"
+msgstr "Скопировать всё"
+
+msgid "Clear view"
+msgstr "Очистить"
+
+msgid "Open log folder"
+msgstr "Открыть папку логов"
+
+msgid "Games keep running after the window is closed"
+msgstr "Игры продолжат работать после закрытия окна"
+
+msgid "Library"
+msgstr "Библиотека"
+
+msgid "Add a game"
+msgstr "Добавить игру"
+
+msgid "Search library"
+msgstr "Поиск по библиотеке"
+
+msgid "No games yet"
+msgstr "Пока нет игр"
+
+msgid "Add a Windows game executable and launch it through umu-run."
+msgstr "Добавьте исполняемый файл Windows-игры и запускайте его через umu-run."
+
+msgid "%d game"
+msgid_plural "%d games"
+msgstr[0] "%d игра"
+msgstr[1] "%d игры"
+msgstr[2] "%d игр"
+
+msgid "%d running"
+msgstr "работает: %d"
+
+msgid "%d of %d"
+msgstr "%d из %d"

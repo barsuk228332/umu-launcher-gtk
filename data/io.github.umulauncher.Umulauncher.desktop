@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=umulauncher
+Comment=GTK4 launcher for Windows games on Linux powered by umu-launcher
+Exec=umulauncher
+Icon=applications-games
+Terminal=false
+Categories=Game;Utility;
+Keywords=umu;wine;proton;game;launcher;
+StartupNotify=true

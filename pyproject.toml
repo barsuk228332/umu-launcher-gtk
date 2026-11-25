@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "umulauncher"
+version = "0.1.0"
+description = "GTK4 launcher for Windows games on Linux powered by umu-launcher"
+requires-python = ">=3.11"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "barsuk" }]
+dependencies = []
+
+[project.scripts]
+umulauncher = "umulauncher.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["umulauncher*"]
+
+[tool.setuptools.package-data]
+umulauncher = ["locale/*/LC_MESSAGES/*.mo"]
