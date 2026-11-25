@@ -6,3 +6,8 @@ dist/
 .venv/
 umulauncher/locale/*/LC_MESSAGES/*.mo
 po/*.pot
+
+# makepkg
+src/
+pkg/
+*.pkg.tar.*
