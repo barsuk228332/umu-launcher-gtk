@@ -21,15 +21,15 @@ optdepends=(
 )
 makedepends=('gettext')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('b66b10c781eec37028c1e74772bce2158ed5980a94bdebe8e0c8f06414a04ce7')
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "$srcdir/umu-launcher-gtk-$pkgver"
   make i18n
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$srcdir/umu-launcher-gtk-$pkgver"
 
   install -d "$pkgdir/usr/lib/$pkgname" "$pkgdir/usr/bin" \
     "$pkgdir/usr/share/applications" "$pkgdir/usr/share/licenses/$pkgname"
