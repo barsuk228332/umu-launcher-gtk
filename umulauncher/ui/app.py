@@ -174,6 +174,8 @@ class App(Adw.Application):
             fresh.cover_path = path
             db.update_game(fresh)
             self.refresh_library_later()
+            if self.window is not None:
+                self.window.refresh_cover(game_id, path)
         return False
 
     # -------------------------------------------------------------- launch
@@ -198,7 +200,8 @@ class App(Adw.Application):
                 self.runners.pop(game.id, None)
             if on_exit is not None:
                 GLib.idle_add(on_exit, code, duration)
-            self.refresh_library_later()
+            # Called from the log-reader thread: hop to the main loop.
+            GLib.idle_add(self.refresh_library_later, 300)
 
         process = runner.GameProcess(plan, on_line=line_callback, on_exit=exit_callback)
         try:

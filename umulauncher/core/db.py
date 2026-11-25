@@ -161,10 +161,9 @@ def delete_game(game_id: int, path: Path | None = None) -> None:
 
 
 def add_playtime(game_id: int, seconds: int, path: Path | None = None) -> None:
-    if seconds <= 0:
-        return
+    seconds = max(0, int(seconds))
     with session(path) as conn:
         conn.execute(
             "UPDATE games SET playtime_sec = playtime_sec + ?, last_played = ? WHERE id = ?",
-            (int(seconds), time.strftime("%Y-%m-%dT%H:%M:%S"), game_id),
+            (seconds, time.strftime("%Y-%m-%dT%H:%M:%S"), game_id),
         )

@@ -6,6 +6,6 @@ Comment=GTK4 launcher for Windows games on Linux powered by umu-launcher
 Exec=umulauncher
 Icon=applications-games
 Terminal=false
-Categories=Game;Utility;
+Categories=Game;
 Keywords=umu;wine;proton;game;launcher;
 StartupNotify=true

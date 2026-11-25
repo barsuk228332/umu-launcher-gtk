@@ -640,6 +640,9 @@ class GamePage(Adw.NavigationPage):
         if not path:
             self.app.toast(_("No cover found"))
             return
+        self.apply_cover(path)
+
+    def apply_cover(self, path: str) -> None:
         self.game.cover_path = path
         self.cover_row.set_subtitle(Path(path).name)
         self.cover.set_cover(path, self.game.title)

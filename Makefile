@@ -1,7 +1,12 @@
 PYTHON ?= python3
 PREFIX ?= /usr/local
 
-.PHONY: all run test i18n pot clean install uninstall
+APP_HOME ?= $(HOME)/.local/share/umulauncher
+APP_DIR ?= $(APP_HOME)/app
+BIN_DIR ?= $(HOME)/.local/bin
+DESKTOP_DIR ?= $(HOME)/.local/share/applications
+
+.PHONY: all run test i18n pot install uninstall clean
 
 all: i18n
 
@@ -25,13 +30,26 @@ i18n:
 		fi; \
 	done
 
-install:
-	$(PYTHON) -m pip install --user .
-	install -Dm644 data/io.github.umulauncher.Umulauncher.desktop \
-		$(HOME)/.local/share/applications/io.github.umulauncher.Umulauncher.desktop
+# Install without pip: copy the package and create a small wrapper in ~/.local/bin.
+install: i18n
+	rm -rf "$(APP_DIR)"
+	mkdir -p "$(APP_DIR)" "$(BIN_DIR)" "$(DESKTOP_DIR)"
+	cp -r umulauncher pyproject.toml "$(APP_DIR)/"
+	find "$(APP_DIR)" -name '__pycache__' -type d -prune -exec rm -rf {} +
+	printf '#!/bin/sh\nexport PYTHONPATH="%s"\nexec %s -m umulauncher "$$@"\n' "$(APP_DIR)" "$(PYTHON)" > "$(BIN_DIR)/umulauncher"
+	chmod 755 "$(BIN_DIR)/umulauncher"
+	install -m 644 data/io.github.umulauncher.Umulauncher.desktop \
+		"$(DESKTOP_DIR)/io.github.umulauncher.Umulauncher.desktop"
+	sed -i 's|^Exec=umulauncher$$|Exec=$(BIN_DIR)/umulauncher|' \
+		"$(DESKTOP_DIR)/io.github.umulauncher.Umulauncher.desktop"
+	@echo "Installed: $(BIN_DIR)/umulauncher"
+	@echo "Make sure $(BIN_DIR) is in PATH, then run: umulauncher"
 
 uninstall:
-	rm -f $(HOME)/.local/share/applications/io.github.umulauncher.Umulauncher.desktop
+	rm -f "$(BIN_DIR)/umulauncher"
+	rm -f "$(DESKTOP_DIR)/io.github.umulauncher.Umulauncher.desktop"
+	rm -rf "$(APP_DIR)"
+	@echo "Removed umulauncher (library and settings are kept in ~/.local/share/umulauncher and ~/.config/umulauncher)"
 
 clean:
 	find . -name '__pycache__' -type d -prune -exec rm -rf {} +

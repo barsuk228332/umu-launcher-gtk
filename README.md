@@ -36,11 +36,15 @@ make i18n          # собрать .mo (нужен gettext)
 python3 -m umulauncher
 ```
 
-Установка:
+Установка (без pip):
 
 ```bash
-make install       # pip install --user + ярлык в меню приложений
+make install       # копия в ~/.local/share/umulauncher + ~/.local/bin/umulauncher
+umulauncher        # если ~/.local/bin в PATH
+make uninstall
 ```
+
+Для установки в `~/.local/bin` нужен `gettext` (есть в базовой системе Arch).
 
 ## Использование
 

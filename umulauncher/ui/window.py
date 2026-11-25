@@ -48,6 +48,11 @@ class MainWindow(Adw.ApplicationWindow):
     def refresh_library(self) -> None:
         self.library_page.rebuild()
 
+    def refresh_cover(self, game_id: int, path: str) -> None:
+        page = self.navigation.get_visible_page()
+        if isinstance(page, GamePage) and page.game.id == game_id:
+            page.apply_cover(path)
+
     def show_settings(self) -> None:
         self.app.show_settings(self)
 
