@@ -119,4 +119,5 @@ po/                  переводы
 
 ## Лицензия
 
-GPL-3.0-or-later.
+GNU General Public License v3.0 или новее (GPL-3.0-or-later). Полный текст —
+в файле [LICENSE](LICENSE).
