@@ -52,6 +52,30 @@ make uninstall
 
 Для установки в `~/.local/bin` нужен `gettext` (есть в базовой системе Arch).
 
+### Бинарный пакет (Arch/CachyOS)
+
+Готовый пакет лежит в GitHub Releases. Скачайте его и установите локально:
+
+```bash
+curl -LO https://github.com/barsuk228332/umu-launcher-gtk/releases/download/v0.1.0/umulauncher-0.1.0-1-any.pkg.tar.zst
+sudo pacman -U umulauncher-0.1.0-1-any.pkg.tar.zst
+```
+
+Зависимости (`python`, `python-gobject`, `gtk4`, `libadwaita`, `umu-launcher`)
+`pacman` подтянет сам из подключённых репозиториев.
+
+Устанавливать сразу по URL (`sudo pacman -U https://...`) не получится при
+стандартном `SigLevel = PackageRequired`: pacman ждёт рядом с пакетом файл
+`.sig`, а его в релизе нет. Варианты — скачать пакет локально (выше) или
+добавить `--nosignature`:
+
+```bash
+sudo pacman -U --nosignature https://github.com/barsuk228332/umu-launcher-gtk/releases/download/v0.1.0/umulauncher-0.1.0-1-any.pkg.tar.zst
+```
+
+Собрать пакет из исходников: `makepkg -si` (или `makepkg`, затем
+`sudo pacman -U umulauncher-*.pkg.tar.zst`).
+
 ## Использование
 
 1. Нажмите «+» и выберите `.exe` игры.

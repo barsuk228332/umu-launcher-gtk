@@ -70,3 +70,12 @@ make install # no pip: copies package to ~/.local/share/umulauncher/app + wrappe
 - New GTK modules must call `gi.require_version("Gtk", "4.0")` and
   `gi.require_version("Adw", "1")` before importing `gi.repository` (see
   `ui/app.py`).
+
+## Packaging
+
+`PKGBUILD` builds an `arch=('any')` binary package from the GitHub tag
+`v$pkgver` (not from the working tree). To release a new version: bump
+`pkgver` and `__version__`, push the tag, run `updpkgsums`, rebuild with
+`makepkg -f`, and attach the `.pkg.tar.zst` to the GitHub release. The package
+is unsigned, so install-from-URL needs `pacman -U --nosignature …` or a local
+file; document both in README and release notes.
