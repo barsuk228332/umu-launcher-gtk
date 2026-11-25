@@ -11,3 +11,4 @@ po/*.pot
 src/
 pkg/
 *.pkg.tar.*
+umulauncher-*.tar.gz
