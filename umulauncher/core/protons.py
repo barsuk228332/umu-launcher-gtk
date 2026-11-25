@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import os
 import re
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
+
+from . import config
 
 AUTO_UMU = ""
 CODEGEN_GE = "GE-Proton"
@@ -114,6 +117,9 @@ def is_usable(path: Path) -> bool:
 
 def extra_proton_dirs() -> list[Path]:
     return [
+        config.PROTONS_DIR,
+        config.STEAM_COMPAT_DIR,
+        config.UMU_DATA_DIR,
         Path.home() / ".local/share/umu",
         Path.home() / ".local/share/Steam/compatibilitytools.d",
         Path.home() / ".steam/steam/compatibilitytools.d",
@@ -192,3 +198,54 @@ def find_build(builds: list[ProtonBuild], proton_path: str) -> ProtonBuild | Non
         if build.path == proton_path:
             return build
     return None
+
+
+def installed(include_incomplete: bool = True) -> list[ProtonBuild]:
+    """Installed builds only, without the virtual auto-download entries."""
+    return [build for build in discover(include_incomplete=include_incomplete) if not build.is_auto]
+
+
+def removable_dirs() -> list[Path]:
+    """Folders where the launcher is allowed to delete a Proton build."""
+    candidates = [config.PROTONS_DIR, config.STEAM_COMPAT_DIR]
+    for root in library_roots():
+        candidates.append(root / "compatibilitytools.d")
+    for extra in extra_proton_dirs():
+        if extra.name == "compatibilitytools.d":
+            candidates.append(extra)
+
+    dirs: list[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        try:
+            key = str(candidate.resolve())
+        except OSError:
+            key = str(candidate)
+        if key not in seen:
+            seen.add(key)
+            dirs.append(candidate)
+    return dirs
+
+
+def is_removable(path: str | Path, roots: list[Path] | None = None) -> bool:
+    """True when ``path`` is a build directory directly inside a compatibility folder."""
+    candidate = Path(path).expanduser()
+    try:
+        resolved = candidate.resolve()
+    except OSError:
+        return False
+    if not resolved.is_dir():
+        return False
+    for root in roots if roots is not None else removable_dirs():
+        try:
+            if resolved.parent == Path(root).expanduser().resolve():
+                return True
+        except OSError:
+            continue
+    return False
+
+
+def remove_build(path: str | Path, roots: list[Path] | None = None) -> None:
+    if not is_removable(path, roots):
+        raise ValueError(f"refusing to remove a non-compatibility folder: {path!r}")
+    shutil.rmtree(Path(path).expanduser())

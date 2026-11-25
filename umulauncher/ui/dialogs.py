@@ -247,6 +247,16 @@ class SettingsDialog(Adw.PreferencesDialog):
         runtime.add(self.proton_row)
         self._proton_values = values
 
+        self.manage_proton_row = Adw.ActionRow(
+            title=_("Proton builds"),
+            subtitle=_("Download, inspect and remove Proton builds"),
+        )
+        manage_proton_button = Gtk.Button(label=_("Manage"))
+        manage_proton_button.set_valign(Gtk.Align.CENTER)
+        manage_proton_button.connect("clicked", self._open_proton_manager)
+        self.manage_proton_row.add_suffix(manage_proton_button)
+        runtime.add(self.manage_proton_row)
+
         self.prefix_row = Adw.EntryRow(title=_("Prefix directory"))
         self.prefix_row.set_text(self.settings.prefix_root)
         self.prefix_row.connect("apply", self._on_prefix_apply)
@@ -337,6 +347,26 @@ class SettingsDialog(Adw.PreferencesDialog):
         self.settings.default_proton = self._proton_values[index] if 0 <= index < len(self._proton_values) else ""
         self._save()
 
+    def _open_proton_manager(self, _button) -> None:
+        from .proton_manager import ProtonManagerDialog
+
+        ProtonManagerDialog(self.app, on_changed=self._reload_proton_options).present(self)
+
+    def _reload_proton_options(self) -> None:
+        current = self.settings.default_proton or ""
+        labels, values = proton_options()
+        missing = current not in values
+        self._loading = True
+        self._proton_values = values
+        self.proton_row.set_model(Gtk.StringList.new(labels))
+        self.proton_row.set_selected(values.index(current) if not missing else 0)
+        if missing:
+            self.settings.default_proton = values[0] if values else ""
+            self._loading = False
+            self._save()
+            return
+        self._loading = False
+
     def _on_prefix_changed(self, row: Adw.EntryRow) -> None:
         if self._loading:
             return
@@ -416,6 +446,25 @@ def choose_file(
             on_chosen(Path(file.get_path()))
 
     dialog.open(parent, None, on_done)
+
+
+def choose_folder(
+    parent: Gtk.Window,
+    title: str,
+    on_chosen: Callable[[Path], None],
+) -> None:
+    dialog = Gtk.FileDialog()
+    dialog.set_title(title)
+
+    def on_done(source: Gtk.FileDialog, result) -> None:
+        try:
+            folder = source.select_folder_finish(result)
+        except GLib.Error:
+            return
+        if folder is not None and folder.get_path():
+            on_chosen(Path(folder.get_path()))
+
+    dialog.select_folder(parent, None, on_done)
 
 
 def confirm(

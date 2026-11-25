@@ -111,6 +111,14 @@ class ArgvTest(unittest.TestCase):
         self.assertEqual(runner.build_argv(plan, "umu-run"), ["umu-run", "/g.exe"])
 
 
+class EffectiveWorkdirTest(unittest.TestCase):
+    def test_defaults_to_exe_folder(self):
+        self.assertEqual(runner.effective_workdir("/games/tld/tld.exe"), "/games/tld")
+
+    def test_explicit_workdir_wins(self):
+        self.assertEqual(runner.effective_workdir("/games/tld/tld.exe", "/data"), "/data")
+
+
 class PlanFromGameTest(unittest.TestCase):
     def test_defaults(self):
         settings = config.Settings(prefix_root="/tmp/prefixes", debug_logs=True)

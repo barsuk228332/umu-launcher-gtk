@@ -21,15 +21,29 @@ def xdg_dir(env_var: str, fallback: str) -> Path:
     return Path.home() / fallback
 
 
+XDG_DATA_HOME = xdg_dir("XDG_DATA_HOME", ".local/share")
+
 CONFIG_DIR = xdg_dir("XDG_CONFIG_HOME", ".config") / APP_NAME
-DATA_DIR = xdg_dir("XDG_DATA_HOME", ".local/share") / APP_NAME
+DATA_DIR = XDG_DATA_HOME / APP_NAME
 CACHE_DIR = xdg_dir("XDG_CACHE_HOME", ".cache") / APP_NAME
 
 CONFIG_PATH = CONFIG_DIR / "config.json"
 DB_PATH = DATA_DIR / "library.db"
 COVERS_DIR = DATA_DIR / "covers"
 LOGS_DIR = DATA_DIR / "logs"
-APPLICATIONS_DIR = xdg_dir("XDG_DATA_HOME", ".local/share") / "applications"
+APPLICATIONS_DIR = XDG_DATA_HOME / "applications"
+
+# Folders that umu-launcher itself uses for Proton and compatibility tools.
+if os.environ.get("UMU_FOLDERS_PATH"):
+    UMU_DATA_DIR = Path(os.environ["UMU_FOLDERS_PATH"]).expanduser() / "umu"
+    STEAM_COMPAT_DIR = (
+        Path(os.environ["UMU_FOLDERS_PATH"]).expanduser() / "Steam" / "compatibilitytools.d"
+    )
+else:
+    UMU_DATA_DIR = XDG_DATA_HOME / "umu"
+    STEAM_COMPAT_DIR = XDG_DATA_HOME / "Steam" / "compatibilitytools.d"
+
+PROTONS_DIR = UMU_DATA_DIR / "compatibilitytools"
 
 
 @dataclass

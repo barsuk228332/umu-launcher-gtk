@@ -14,7 +14,7 @@ gi.require_version("Adw", "1")
 
 from gi.repository import Adw, GLib, Gtk, Pango  # noqa: E402
 
-from ..core import config, db, desktop, prefixes  # noqa: E402
+from ..core import config, db, desktop, prefixes, runner  # noqa: E402
 from ..core.db import Game  # noqa: E402
 from ..core.i18n import _  # noqa: E402
 from .common import FPS_CHOICES, RESOLUTIONS, open_folder, proton_options, store_options  # noqa: E402
@@ -22,6 +22,7 @@ from .dialogs import (  # noqa: E402
     EnvDialog,
     UmuIdDialog,
     choose_file,
+    choose_folder,
     confirm,
     cover_dialog,
 )
@@ -55,6 +56,8 @@ class GamePage(Adw.NavigationPage):
         box.set_margin_end(18)
 
         box.append(self._build_hero())
+        self.details_group = self._build_details_group()
+        box.append(self.details_group)
         self.run_group = self._build_run_group()
         box.append(self.run_group)
         self.prefix_group = self._build_prefix_group()
@@ -143,6 +146,46 @@ class GamePage(Adw.NavigationPage):
         row.append(info)
         return row
 
+    # ------------------------------------------------------- details group
+    def _build_details_group(self) -> Adw.PreferencesGroup:
+        group = Adw.PreferencesGroup(
+            title=_("Game details"),
+            description=_("Change the title, executable or folders without removing the game."),
+        )
+
+        self.title_row = Adw.EntryRow(title=_("Title"))
+        self.title_row.set_text(self.game.title)
+        self.title_row.connect("changed", self._on_title_changed)
+        group.add(self.title_row)
+
+        self.exe_row = Adw.ActionRow(title=_("Executable"))
+        self.exe_row.set_subtitle(short_path(self.game.exe_path, 60))
+        self.exe_row.set_tooltip_text(self.game.exe_path)
+
+        exe_button = Gtk.Button(icon_name="document-open-symbolic")
+        exe_button.set_valign(Gtk.Align.CENTER)
+        exe_button.set_tooltip_text(_("Choose another executable"))
+        exe_button.connect("clicked", self._on_choose_exe)
+        self.exe_row.add_suffix(exe_button)
+        group.add(self.exe_row)
+
+        self.workdir_row = Adw.ActionRow(title=_("Working directory"))
+        workdir_button = Gtk.Button(icon_name="folder-open-symbolic")
+        workdir_button.set_valign(Gtk.Align.CENTER)
+        workdir_button.set_tooltip_text(_("Choose the working directory"))
+        workdir_button.connect("clicked", self._on_choose_workdir)
+        self.workdir_row.add_suffix(workdir_button)
+
+        reset_button = Gtk.Button(icon_name="edit-undo-symbolic")
+        reset_button.set_valign(Gtk.Align.CENTER)
+        reset_button.set_tooltip_text(_("Use the executable folder"))
+        reset_button.connect("clicked", self._on_reset_workdir)
+        self.workdir_row.add_suffix(reset_button)
+        group.add(self.workdir_row)
+        self._sync_workdir_row()
+
+        return group
+
     # ----------------------------------------------------------- run group
     def _build_run_group(self) -> Adw.PreferencesGroup:
         group = Adw.PreferencesGroup(title=_("Launch"))
@@ -154,6 +197,12 @@ class GamePage(Adw.NavigationPage):
         selected = values.index(self.game.proton_path) if self.game.proton_path in values else 0
         self.proton_row.set_selected(selected)
         self.proton_row.connect("notify::selected", self._on_proton_changed)
+
+        download_button = Gtk.Button(icon_name="folder-download-symbolic")
+        download_button.set_valign(Gtk.Align.CENTER)
+        download_button.set_tooltip_text(_("Download Proton builds"))
+        download_button.connect("clicked", self._on_manage_proton)
+        self.proton_row.add_suffix(download_button)
         group.add(self.proton_row)
 
         self.store_row = Adw.ComboRow(title=_("Store"))
@@ -193,10 +242,11 @@ class GamePage(Adw.NavigationPage):
         self.prefix_row.set_subtitle(short_path(self._prefix_path, 60))
         self.prefix_row.set_tooltip_text(self._prefix_path)
 
+        choose_button = suffix_button("document-open-symbolic", _("Choose prefix folder"), self._on_choose_prefix)
         create_button = suffix_button("folder-new-symbolic", _("Create prefix"), self._on_create_prefix)
         open_button = suffix_button("folder-open-symbolic", _("Open in file manager"), self._on_open_prefix)
         delete_button = suffix_button("user-trash-symbolic", _("Delete prefix"), self._on_delete_prefix)
-        for button in (create_button, open_button, delete_button):
+        for button in (choose_button, create_button, open_button, delete_button):
             self.prefix_row.add_suffix(button)
 
         group.add(self.prefix_row)
@@ -371,11 +421,12 @@ class GamePage(Adw.NavigationPage):
         gs.setdefault("extra", [])
         return gs
 
-    def _save(self) -> None:
+    def _save(self, refresh: bool = True) -> None:
         if self._loading:
             return
         db.update_game(self.game)
-        self.app.refresh_library()
+        if refresh:
+            self.app.refresh_library()
 
     def _sync_field_state(self) -> None:
         enabled = bool(self._gamescope().get("enabled"))
@@ -448,7 +499,89 @@ class GamePage(Adw.NavigationPage):
         self.log_window = None
         return False
 
+    # ------------------------------------------------------------- details
+    def _on_title_changed(self, row: Adw.EntryRow) -> None:
+        if self._loading:
+            return
+        title = row.get_text().strip()
+        if not title:
+            return
+        self.game.title = title
+        self.set_title(title)
+        self.title_label.set_label(title)
+        if not (self.game.cover_path and Path(self.game.cover_path).is_file()):
+            self.cover.set_placeholder(title)
+        self._save(refresh=False)
+        self.app.refresh_library_later(350)
+
+    def _on_choose_exe(self, _button) -> None:
+        choose_file(
+            self.window,
+            _("Choose the game executable"),
+            ["*.exe", "*.EXE"],
+            self._apply_exe,
+        )
+
+    def _apply_exe(self, exe: Path) -> None:
+        old_parent = Path(self.game.exe_path).parent
+        old_workdir = Path(self.game.workdir) if self.game.workdir else None
+        self.game.exe_path = str(exe)
+        if not self.game.workdir or old_workdir == old_parent:
+            self.game.workdir = str(exe.parent)
+            self._sync_workdir_row()
+        self.exe_label.set_label(short_path(str(exe), 70))
+        self.exe_row.set_subtitle(short_path(str(exe), 60))
+        self.exe_row.set_tooltip_text(str(exe))
+        self._save()
+        self.app.toast(_("Executable updated"))
+
+    def _effective_workdir(self) -> str:
+        return runner.effective_workdir(self.game.exe_path, self.game.workdir)
+
+    def _sync_workdir_row(self) -> None:
+        path = self._effective_workdir()
+        subtitle = short_path(path, 60)
+        if not self.game.workdir:
+            subtitle = f"{subtitle} · {_('automatic')}"
+        self.workdir_row.set_subtitle(subtitle)
+        self.workdir_row.set_tooltip_text(path)
+
+    def _on_choose_workdir(self, _button) -> None:
+        choose_folder(self.window, _("Choose the working directory"), self._apply_workdir)
+
+    def _apply_workdir(self, folder: Path) -> None:
+        self.game.workdir = str(folder)
+        self._sync_workdir_row()
+        self._save()
+        self.app.toast(_("Working directory updated"))
+
+    def _on_reset_workdir(self, _button) -> None:
+        self.game.workdir = ""
+        self._sync_workdir_row()
+        self._save()
+
     # -------------------------------------------------------------- fields
+    def _on_manage_proton(self, _button) -> None:
+        from .proton_manager import ProtonManagerDialog
+
+        ProtonManagerDialog(self.app, on_changed=self._reload_proton_options).present(self)
+
+    def _reload_proton_options(self) -> None:
+        current = self.game.proton_path
+        labels, values = proton_options()
+        missing = current not in values
+        self._loading = True
+        self._proton_values = values
+        self.proton_row.set_model(Gtk.StringList.new(labels))
+        self.proton_row.set_selected(values.index(current) if not missing else 0)
+        if missing:
+            self.game.proton_path = values[0] if values else ""
+            self._loading = False
+            db.update_game(self.game)
+            self.app.refresh_library_later(350)
+            return
+        self._loading = False
+
     def _on_proton_changed(self, row: Adw.ComboRow, _param) -> None:
         if self._loading:
             return
@@ -591,6 +724,15 @@ class GamePage(Adw.NavigationPage):
         self.app.toast(message)
         self._refresh_prefix_size()
         return False
+
+    def _on_choose_prefix(self, _button) -> None:
+        choose_folder(self.window, _("Choose the prefix folder"), self._apply_prefix)
+
+    def _apply_prefix(self, folder: Path) -> None:
+        self.game.prefix_path = str(folder)
+        self._save()
+        self._refresh_prefix_size()
+        self.app.toast(_("Prefix folder updated"))
 
     def _on_open_prefix(self, _button) -> None:
         prefixes.open_in_file_manager(self._prefix_path)

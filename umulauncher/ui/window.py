@@ -13,6 +13,7 @@ from ..core import config, db  # noqa: E402
 from ..core.i18n import _, ngettext  # noqa: E402
 from .format import format_playtime  # noqa: E402
 from .game_page import GamePage  # noqa: E402
+from .proton_manager import ProtonManagerDialog  # noqa: E402
 from .widgets import GameCard  # noqa: E402
 
 
@@ -154,6 +155,14 @@ class LibraryPage(Adw.NavigationPage):
         box.set_margin_bottom(6)
         box.set_margin_start(6)
         box.set_margin_end(6)
+
+        proton_button = Gtk.Button(label=_("Proton builds"))
+        proton_button.add_css_class("flat")
+        proton_button.connect(
+            "clicked",
+            lambda _b: (popover.popdown(), ProtonManagerDialog(self.app).present(self.window)),
+        )
+        box.append(proton_button)
 
         settings_button = Gtk.Button(label=_("Settings"))
         settings_button.add_css_class("flat")

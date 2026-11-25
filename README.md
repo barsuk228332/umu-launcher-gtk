@@ -14,8 +14,14 @@
 - Выбор Proton: установленные сборки из `compatibilitytools.d`,
   `steamapps/common`, `/usr/share/steam`, плюс авто-варианты `UMU-Proton` и
   `GE-Proton` (скачивается umu сам).
-- Управление префиксами: создание, размер на диске, открытие в файловом
-  менеджере, безопасное удаление.
+- Менеджер Proton: список установленных сборок с размером, скачивание
+  GE-Proton, UMU-Proton, Proton-CachyOS, DWProton и Proton Salkim (Wineland)
+  с GitHub и dawn.wine — каждый источник отдельным списком, с прогрессом,
+  докачкой, проверкой SHA512 и безопасным удалением.
+- Редактирование игры без удаления: название, `.exe`, рабочая папка и папка
+  префикса меняются прямо на странице игры.
+- Управление префиксами: выбор папки, создание, размер на диске, открытие в
+  файловом менеджере, безопасное удаление.
 - Поиск GAMEID по названию в `umu-database` (включает protonfixes).
 - Переменные окружения на игру, аргументы запуска, MangoHud, gamescope.
 - Живой лог игры, история логов, `winetricks` в префикс.
@@ -49,7 +55,10 @@ make uninstall
 ## Использование
 
 1. Нажмите «+» и выберите `.exe` игры.
-2. Проверьте Proton (по умолчанию — UMU-Proton).
+2. Проверьте Proton (по умолчанию — UMU-Proton). Кнопка загрузки рядом с
+   Proton и пункт меню «Сборки Proton» открывают менеджер: там можно скачать
+   GE-Proton, UMU-Proton, Proton-CachyOS, DWProton или Proton Salkim и удалить
+   ненужные сборки.
 3. Нажмите «Играть». Первый запуск дольше: umu готовит runtime/Proton.
 4. Для сохранений и установщиков создайте префикс кнопкой «Создать префикс».
 
@@ -72,6 +81,8 @@ python3 -m umulauncher --run 3 --debug # с UMU_LOG=1
 | Обложки | `~/.local/share/umulauncher/covers/` |
 | Логи | `~/.local/share/umulauncher/logs/` |
 | Настройки | `~/.config/umulauncher/config.json` (0600) |
+| Proton, скачанный лаунчером | `~/.local/share/umu/compatibilitytools/` |
+| Незавершённые загрузки Proton | `~/.cache/umulauncher/proton-downloads/` |
 | Кэш umu-database | `~/.cache/umulauncher/umu-database.csv` |
 
 ## Решение проблем

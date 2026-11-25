@@ -2,413 +2,733 @@ msgid ""
 msgstr ""
 "Project-Id-Version: umulauncher 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: ru\n"
+"POT-Creation-Date: 2026-11-25 20:37+0300\n"
 "PO-Revision-Date: 2026-11-25 19:00+0100\n"
 "Last-Translator: barsuk\n"
 "Language-Team: none\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: umulauncher/ui/app.py:82
 msgid "A small GTK4 frontend for umu-launcher."
 msgstr "Небольшой GTK4-интерфейс для umu-launcher."
 
+#: umulauncher/ui/app.py:91 umulauncher/ui/game_page.py:520
 msgid "Choose the game executable"
 msgstr "Выберите исполняемый файл игры"
 
+#: umulauncher/ui/app.py:144
+#, python-format
 msgid "GAMEID suggestion applied: %s"
 msgstr "Подставлен GAMEID: %s"
 
+#: umulauncher/ui/app.py:217
+#, python-format
 msgid "Launching %s…"
 msgstr "Запуск «%s»…"
 
+#: umulauncher/ui/app.py:228
 msgid "Stopping game…"
 msgstr "Останавливаем игру…"
 
+#: umulauncher/ui/common.py:11 umulauncher/ui/game_page.py:271
 msgid "none"
 msgstr "нет"
 
+#: umulauncher/ui/common.py:22
 msgid "System language"
 msgstr "Язык системы"
 
+#: umulauncher/ui/dialogs.py:32
+#, python-format
 msgid "line %d: expected KEY=VALUE"
 msgstr "строка %d: ожидается KEY=VALUE"
 
+#: umulauncher/ui/dialogs.py:40
+#, python-format
 msgid "line %d: invalid variable name"
 msgstr "строка %d: недопустимое имя переменной"
 
+#: umulauncher/ui/dialogs.py:54 umulauncher/ui/game_page.py:258
 msgid "Environment variables"
 msgstr "Переменные окружения"
 
+#: umulauncher/ui/dialogs.py:60
 msgid "Save"
 msgstr "Сохранить"
 
+#: umulauncher/ui/dialogs.py:73
 msgid "One KEY=VALUE pair per line. Lines starting with # are ignored."
-msgstr "По одной паре KEY=VALUE в строке. Строки, начинающиеся с #, игнорируются."
+msgstr ""
+"По одной паре KEY=VALUE в строке. Строки, начинающиеся с #, игнорируются."
 
+#: umulauncher/ui/dialogs.py:121
 msgid "Find a GAMEID"
 msgstr "Найти GAMEID"
 
+#: umulauncher/ui/dialogs.py:136
 msgid "Game title"
 msgstr "Название игры"
 
+#: umulauncher/ui/dialogs.py:163
 msgid "Loading umu-database…"
 msgstr "Загружаем umu-database…"
 
+#: umulauncher/ui/dialogs.py:178
 msgid "umu-database is empty. Open Settings and press “Update umu-database”."
-msgstr "База umu-database пуста. Откройте настройки и нажмите «Обновить umu-database»."
+msgstr ""
+"База umu-database пуста. Откройте настройки и нажмите «Обновить umu-"
+"database»."
 
+#: umulauncher/ui/dialogs.py:181
+#, python-format
 msgid "%d games in the database"
 msgstr "Игр в базе: %d"
 
+#: umulauncher/ui/dialogs.py:192
 msgid "Nothing found"
 msgstr "Ничего не найдено"
 
+#: umulauncher/ui/dialogs.py:194
+#, python-format
 msgid "%d matches"
 msgstr "Совпадений: %d"
 
+#: umulauncher/ui/dialogs.py:214 umulauncher/ui/game_page.py:397
+#: umulauncher/ui/window.py:167
 msgid "Settings"
 msgstr "Настройки"
 
+#: umulauncher/ui/dialogs.py:220
 msgid "Appearance"
 msgstr "Внешний вид"
 
+#: umulauncher/ui/dialogs.py:223
 msgid "Interface language"
 msgstr "Язык интерфейса"
 
+#: umulauncher/ui/dialogs.py:235
 msgid "Runtime"
 msgstr "Среда выполнения"
 
+#: umulauncher/ui/dialogs.py:236
 msgid "Defaults applied when a game does not override them."
 msgstr "Значения по умолчанию, если игра не переопределяет их."
 
+#: umulauncher/ui/dialogs.py:240
 msgid "Default Proton"
 msgstr "Proton по умолчанию"
 
+#: umulauncher/ui/dialogs.py:243
 msgid "Used for new games and prefix creation"
 msgstr "Используется для новых игр и создания префиксов"
 
+#: umulauncher/ui/dialogs.py:251 umulauncher/ui/proton_manager.py:33
+#: umulauncher/ui/window.py:159
+msgid "Proton builds"
+msgstr "Сборки Proton"
+
+#: umulauncher/ui/dialogs.py:252
+msgid "Download, inspect and remove Proton builds"
+msgstr "Скачивайте, просматривайте и удаляйте сборки Proton"
+
+#: umulauncher/ui/dialogs.py:254
+msgid "Manage"
+msgstr "Управлять"
+
+#: umulauncher/ui/dialogs.py:260
 msgid "Prefix directory"
 msgstr "Каталог префиксов"
 
+#: umulauncher/ui/dialogs.py:266
 msgid "Debug logs"
 msgstr "Отладочные логи"
 
+#: umulauncher/ui/dialogs.py:267
 msgid "Set UMU_LOG=1 and keep verbose output in the log window"
 msgstr "Включает UMU_LOG=1 и подробный вывод в окне логов"
 
+#: umulauncher/ui/dialogs.py:274 umulauncher/ui/game_page.py:277
 msgid "Cover art"
 msgstr "Обложки"
 
-msgid "SteamGridDB needs a free API key from steamgriddb.com/profile/preferences/api"
-msgstr "Для SteamGridDB нужен бесплатный API-ключ: steamgriddb.com/profile/preferences/api"
+#: umulauncher/ui/dialogs.py:275
+msgid ""
+"SteamGridDB needs a free API key from steamgriddb.com/profile/preferences/api"
+msgstr ""
+"Для SteamGridDB нужен бесплатный API-ключ: steamgriddb.com/profile/"
+"preferences/api"
 
+#: umulauncher/ui/dialogs.py:279
 msgid "SteamGridDB API key"
 msgstr "API-ключ SteamGridDB"
 
+#: umulauncher/ui/dialogs.py:284
 msgid "Steam CDN fallback"
 msgstr "Резервный Steam CDN"
 
+#: umulauncher/ui/dialogs.py:285
 msgid "Download free square covers when SteamGridDB finds nothing"
 msgstr "Скачивать бесплатные обложки, если SteamGridDB ничего не нашёл"
 
+#: umulauncher/ui/dialogs.py:291
 msgid "umu-database"
 msgstr "umu-database"
 
+#: umulauncher/ui/dialogs.py:295
 msgid "Update umu-database"
 msgstr "Обновить umu-database"
 
+#: umulauncher/ui/dialogs.py:296
 msgid "Used to suggest GAMEID values for protonfixes"
 msgstr "Нужна для подсказок GAMEID для protonfixes"
 
+#: umulauncher/ui/dialogs.py:298
 msgid "Update"
 msgstr "Обновить"
 
+#: umulauncher/ui/dialogs.py:304 umulauncher/ui/window.py:183
 msgid "About"
 msgstr "О программе"
 
+#: umulauncher/ui/dialogs.py:308
+#, python-format
 msgid "A GTK4 frontend for umu-launcher. Version %s"
 msgstr "GTK4-интерфейс для umu-launcher. Версия %s"
 
+#: umulauncher/ui/dialogs.py:313 umulauncher/ui/window.py:172
 msgid "Open data folder"
 msgstr "Открыть папку с данными"
 
+#: umulauncher/ui/dialogs.py:341
 msgid "Restart umulauncher to apply the language"
 msgstr "Перезапустите umulauncher, чтобы применить язык"
 
+#: umulauncher/ui/dialogs.py:393
 msgid "Updating…"
 msgstr "Обновление…"
 
+#: umulauncher/ui/dialogs.py:399
 msgid "Update failed"
 msgstr "Не удалось обновить"
 
+#: umulauncher/ui/dialogs.py:401
+#, python-format
 msgid "%d records downloaded"
 msgstr "Загружено записей: %d"
 
+#: umulauncher/ui/dialogs.py:426
 msgid "Supported files"
 msgstr "Поддерживаемые файлы"
 
+#: umulauncher/ui/dialogs.py:473 umulauncher/ui/game_page.py:814
+#: umulauncher/ui/proton_manager.py:58 umulauncher/ui/proton_manager.py:299
 msgid "Cancel"
 msgstr "Отмена"
 
+#: umulauncher/ui/dialogs.py:499
 msgid "Download cover art"
 msgstr "Загрузка обложки"
 
+#: umulauncher/ui/dialogs.py:500
+#, python-format
 msgid "Looking for “%s” on SteamGridDB…"
 msgstr "Ищем «%s» в SteamGridDB…"
 
+#: umulauncher/ui/dialogs.py:502
 msgid "Close"
 msgstr "Закрыть"
 
+#: umulauncher/ui/format.py:11
 msgid "never played"
 msgstr "ещё не играли"
 
+#: umulauncher/ui/format.py:16
+#, python-format
 msgid "%d h"
 msgstr "%d ч"
 
+#: umulauncher/ui/format.py:18
+#, python-format
 msgid "%d min"
 msgstr "%d мин"
 
+#: umulauncher/ui/game_page.py:120
 msgid "Play"
 msgstr "Играть"
 
+#: umulauncher/ui/game_page.py:127
 msgid "Stop"
 msgstr "Стоп"
 
+#: umulauncher/ui/game_page.py:135
 msgid "Logs"
 msgstr "Логи"
 
+#: umulauncher/ui/game_page.py:141
 msgid "Export a .desktop shortcut"
 msgstr "Создать ярлык .desktop"
 
+#: umulauncher/ui/game_page.py:152
+msgid "Game details"
+msgstr "Параметры игры"
+
+#: umulauncher/ui/game_page.py:153
+msgid "Change the title, executable or folders without removing the game."
+msgstr "Измените название, исполняемый файл или папки, не удаляя игру."
+
+#: umulauncher/ui/game_page.py:156
+msgid "Title"
+msgstr "Название"
+
+#: umulauncher/ui/game_page.py:161
+msgid "Executable"
+msgstr "Исполняемый файл"
+
+#: umulauncher/ui/game_page.py:167
+msgid "Choose another executable"
+msgstr "Выбрать другой исполняемый файл"
+
+#: umulauncher/ui/game_page.py:172
+msgid "Working directory"
+msgstr "Рабочая папка"
+
+#: umulauncher/ui/game_page.py:175 umulauncher/ui/game_page.py:550
+msgid "Choose the working directory"
+msgstr "Выбрать рабочую папку"
+
+#: umulauncher/ui/game_page.py:181
+msgid "Use the executable folder"
+msgstr "Использовать папку исполняемого файла"
+
+#: umulauncher/ui/game_page.py:191
 msgid "Launch"
 msgstr "Запуск"
 
+#: umulauncher/ui/game_page.py:193
 msgid "Proton"
 msgstr "Proton"
 
+#: umulauncher/ui/game_page.py:203
+msgid "Download Proton builds"
+msgstr "Скачать сборки Proton"
+
+#: umulauncher/ui/game_page.py:208
 msgid "Store"
 msgstr "Магазин"
 
+#: umulauncher/ui/game_page.py:217
 msgid "GAMEID (protonfixes)"
 msgstr "GAMEID (protonfixes)"
 
+#: umulauncher/ui/game_page.py:222
 msgid "Search umu-database"
 msgstr "Поиск в umu-database"
 
+#: umulauncher/ui/game_page.py:227
 msgid "Launch arguments"
 msgstr "Аргументы запуска"
 
+#: umulauncher/ui/game_page.py:237
 msgid "Wine prefix"
 msgstr "Wine-префикс"
 
-msgid "Each game should use its own prefix. Windows installers and registry live here."
-msgstr "У каждой игры должен быть свой префикс. Здесь хранятся установщики Windows и реестр."
+#: umulauncher/ui/game_page.py:238
+msgid ""
+"Each game should use its own prefix. Windows installers and registry live "
+"here."
+msgstr ""
+"У каждой игры должен быть свой префикс. Здесь хранятся установщики Windows и "
+"реестр."
 
+#: umulauncher/ui/game_page.py:241
 msgid "Prefix folder"
 msgstr "Папка префикса"
 
+#: umulauncher/ui/game_page.py:245
+msgid "Choose prefix folder"
+msgstr "Выбрать папку префикса"
+
+#: umulauncher/ui/game_page.py:246
 msgid "Create prefix"
 msgstr "Создать префикс"
 
+#: umulauncher/ui/game_page.py:247
 msgid "Open in file manager"
 msgstr "Открыть в файловом менеджере"
 
+#: umulauncher/ui/game_page.py:248
 msgid "Delete prefix"
 msgstr "Удалить префикс"
 
+#: umulauncher/ui/game_page.py:254
 msgid "Size on disk"
 msgstr "Занято на диске"
 
+#: umulauncher/ui/game_page.py:260
 msgid "Edit"
 msgstr "Изменить"
 
+#: umulauncher/ui/game_page.py:279
 msgid "Cover"
 msgstr "Обложка"
 
+#: umulauncher/ui/game_page.py:281
 msgid "placeholder"
 msgstr "заглушка"
 
+#: umulauncher/ui/game_page.py:283 umulauncher/ui/proton_manager.py:200
 msgid "Download"
 msgstr "Скачать"
 
+#: umulauncher/ui/game_page.py:290
 msgid "Choose a local image"
 msgstr "Выбрать локальное изображение"
 
+#: umulauncher/ui/game_page.py:299
 msgid "Extra options"
 msgstr "Дополнительно"
 
+#: umulauncher/ui/game_page.py:302
 msgid "Run the game inside the gamescope compositor"
 msgstr "Запускать игру внутри композитора gamescope"
 
+#: umulauncher/ui/game_page.py:308
 msgid "Resolution"
 msgstr "Разрешение"
 
+#: umulauncher/ui/game_page.py:319
 msgid "Frame limit"
 msgstr "Ограничение FPS"
 
+#: umulauncher/ui/game_page.py:320
 msgid "Unlimited"
 msgstr "Без ограничения"
 
+#: umulauncher/ui/game_page.py:326
 msgid "Fullscreen"
 msgstr "Полный экран"
 
+#: umulauncher/ui/game_page.py:331
 msgid "Extra gamescope flags"
 msgstr "Дополнительные флаги gamescope"
 
+#: umulauncher/ui/game_page.py:339
 msgid "Set MANGOHUD=1 for this game"
 msgstr "Включить MANGOHUD=1 для этой игры"
 
+#: umulauncher/ui/game_page.py:347
 msgid "Install components into the prefix (requires GE-Proton or UMU-Proton)"
 msgstr "Устанавливать компоненты в префикс (нужен GE-Proton или UMU-Proton)"
 
+#: umulauncher/ui/game_page.py:349
 msgid "Run…"
 msgstr "Запустить…"
 
+#: umulauncher/ui/game_page.py:356
 msgid "Menu shortcut"
 msgstr "Ярлык в меню"
 
+#: umulauncher/ui/game_page.py:357
 msgid "Add this game to the KDE/GNOME application menu"
 msgstr "Добавить игру в меню приложений KDE/GNOME"
 
+#: umulauncher/ui/game_page.py:359
 msgid "Export"
 msgstr "Экспорт"
 
+#: umulauncher/ui/game_page.py:368
 msgid "Danger zone"
 msgstr "Опасная зона"
 
+#: umulauncher/ui/game_page.py:370
 msgid "Remove from library"
 msgstr "Убрать из библиотеки"
 
+#: umulauncher/ui/game_page.py:371
 msgid "The prefix and game files are kept on disk"
 msgstr "Префикс и файлы игры остаются на диске"
 
+#: umulauncher/ui/game_page.py:373 umulauncher/ui/game_page.py:873
 msgid "Remove"
 msgstr "Убрать"
 
+#: umulauncher/ui/game_page.py:384 umulauncher/ui/window.py:151
 msgid "Menu"
 msgstr "Меню"
 
+#: umulauncher/ui/game_page.py:392
 msgid "Show log folder"
 msgstr "Показать папку логов"
 
+#: umulauncher/ui/game_page.py:441
 msgid "Running"
 msgstr "Работает"
 
+#: umulauncher/ui/game_page.py:457
 msgid "This game is already running"
 msgstr "Игра уже запущена"
 
+#: umulauncher/ui/game_page.py:482
 msgid "Game exited"
 msgstr "Игра завершилась"
 
+#: umulauncher/ui/game_page.py:484
+#, python-format
 msgid "Game exited with code %d"
 msgstr "Игра завершилась с кодом %d"
 
+#: umulauncher/ui/game_page.py:536
+msgid "Executable updated"
+msgstr "Исполняемый файл обновлён"
+
+#: umulauncher/ui/game_page.py:545
+msgid "automatic"
+msgstr "автоматически"
+
+#: umulauncher/ui/game_page.py:556
+msgid "Working directory updated"
+msgstr "Рабочая папка обновлена"
+
+#: umulauncher/ui/game_page.py:621
+#, python-format
 msgid "GAMEID set to %s"
 msgstr "GAMEID изменён на %s"
 
+#: umulauncher/ui/game_page.py:685
 msgid "not created"
 msgstr "не создан"
 
+#: umulauncher/ui/game_page.py:700
 msgid "Creating prefix…"
 msgstr "Создаём префикс…"
 
+#: umulauncher/ui/game_page.py:707
 msgid "Prefix ready"
 msgstr "Префикс готов"
 
+#: umulauncher/ui/game_page.py:709
+#, python-format
 msgid "Prefix creation failed (code %d). Try another Proton build."
 msgstr "Не удалось создать префикс (код %d). Попробуйте другую сборку Proton."
 
+#: umulauncher/ui/game_page.py:722
+msgid "Choose the prefix folder"
+msgstr "Выбрать папку префикса"
+
+#: umulauncher/ui/game_page.py:728
+msgid "Prefix folder updated"
+msgstr "Папка префикса обновлена"
+
+#: umulauncher/ui/game_page.py:736
 msgid "Prefix does not exist"
 msgstr "Префикс не существует"
 
+#: umulauncher/ui/game_page.py:739
 msgid "Refusing to delete this folder"
 msgstr "Отказываюсь удалять эту папку"
 
+#: umulauncher/ui/game_page.py:743
 msgid "Deleting prefix…"
 msgstr "Удаляем префикс…"
 
+#: umulauncher/ui/game_page.py:748
 msgid "Prefix deleted"
 msgstr "Префикс удалён"
 
+#: umulauncher/ui/game_page.py:757
 msgid "Delete this prefix?"
 msgstr "Удалить этот префикс?"
 
-msgid "Everything inside %s will be removed, including saves stored in the prefix."
+#: umulauncher/ui/game_page.py:758
+#, python-format
+msgid ""
+"Everything inside %s will be removed, including saves stored in the prefix."
 msgstr "Всё содержимое %s будет удалено, включая сохранения внутри префикса."
 
+#: umulauncher/ui/game_page.py:759 umulauncher/ui/proton_manager.py:110
+#: umulauncher/ui/proton_manager.py:300
 msgid "Delete"
 msgstr "Удалить"
 
+#: umulauncher/ui/game_page.py:776
 msgid "No cover found"
 msgstr "Обложка не найдена"
 
+#: umulauncher/ui/game_page.py:789
 msgid "Choose a cover image"
 msgstr "Выберите обложку"
 
+#: umulauncher/ui/game_page.py:807
 msgid "Run winetricks"
 msgstr "Запустить winetricks"
 
+#: umulauncher/ui/game_page.py:808
 msgid "Space separated verbs, for example: vcrun2022 d3dx9"
 msgstr "Вербы через пробел, например: vcrun2022 d3dx9"
 
+#: umulauncher/ui/game_page.py:815
 msgid "Run"
 msgstr "Запустить"
 
+#: umulauncher/ui/game_page.py:825
 msgid "No verbs given"
 msgstr "Не указаны вербы"
 
+#: umulauncher/ui/game_page.py:834
 msgid "winetricks finished"
 msgstr "winetricks завершён"
 
+#: umulauncher/ui/game_page.py:857
+#, python-format
 msgid "Shortcut created: %s"
 msgstr "Ярлык создан: %s"
 
+#: umulauncher/ui/game_page.py:871
+#, python-format
 msgid "Remove “%s” from the library?"
 msgstr "Убрать «%s» из библиотеки?"
 
+#: umulauncher/ui/game_page.py:872
 msgid "The executable, prefix and saves are not touched."
 msgstr "Исполняемый файл, префикс и сохранения не затрагиваются."
 
+#: umulauncher/ui/logs.py:22
+#, python-format
 msgid "Log: %s"
 msgstr "Лог: %s"
 
+#: umulauncher/ui/logs.py:30
 msgid "Copy all"
 msgstr "Скопировать всё"
 
+#: umulauncher/ui/logs.py:35
 msgid "Clear view"
 msgstr "Очистить"
 
+#: umulauncher/ui/logs.py:40
 msgid "Open log folder"
 msgstr "Открыть папку логов"
 
+#: umulauncher/ui/proton_manager.py:41
+msgid "Refresh"
+msgstr "Обновить"
+
+#: umulauncher/ui/proton_manager.py:64 umulauncher/ui/proton_manager.py:193
+msgid "Installed"
+msgstr "Установлено"
+
+#: umulauncher/ui/proton_manager.py:67
+msgid "Available downloads"
+msgstr "Доступны для скачивания"
+
+#: umulauncher/ui/proton_manager.py:90
+msgid "No Proton builds installed"
+msgstr "Сборки Proton не установлены"
+
+#: umulauncher/ui/proton_manager.py:132
+msgid "Loading Proton releases…"
+msgstr "Загружаем список сборок Proton…"
+
+#: umulauncher/ui/proton_manager.py:167
+msgid "Could not load the release list"
+msgstr "Не удалось загрузить список сборок"
+
+#: umulauncher/ui/proton_manager.py:176
+msgid "No releases found"
+msgstr "Сборки не найдены"
+
+#: umulauncher/ui/proton_manager.py:213
+msgid "Another Proton download is already running"
+msgstr "Другая загрузка Proton уже идёт"
+
+#: umulauncher/ui/proton_manager.py:220
+#, python-format
+msgid "Downloading %s…"
+msgstr "Скачиваем %s…"
+
+#: umulauncher/ui/proton_manager.py:263
+msgid "Cancelling…"
+msgstr "Отменяем…"
+
+#: umulauncher/ui/proton_manager.py:276
+msgid "Download cancelled"
+msgstr "Загрузка отменена"
+
+#: umulauncher/ui/proton_manager.py:279
+#, python-format
+msgid "Download failed: %s"
+msgstr "Не удалось скачать: %s"
+
+#: umulauncher/ui/proton_manager.py:282
+#, python-format
+msgid "Proton installed: %s"
+msgstr "Proton установлен: %s"
+
+#: umulauncher/ui/proton_manager.py:296
+#, python-format
+msgid "Delete %s?"
+msgstr "Удалить %s?"
+
+#: umulauncher/ui/proton_manager.py:297
+msgid ""
+"The build will be removed from disk. Games using it will need another Proton."
+msgstr ""
+"Сборка будет удалена с диска. Для игр, использующих её, нужно будет выбрать "
+"другой Proton."
+
+#: umulauncher/ui/proton_manager.py:325
+#, python-format
+msgid "Could not delete %s: %s"
+msgstr "Не удалось удалить %s: %s"
+
+#: umulauncher/ui/proton_manager.py:327
+#, python-format
+msgid "Proton build deleted: %s"
+msgstr "Сборка Proton удалена: %s"
+
+#: umulauncher/ui/window.py:70
 msgid "Games keep running after the window is closed"
 msgstr "Игры продолжат работать после закрытия окна"
 
+#: umulauncher/ui/window.py:77 umulauncher/ui/window.py:85
 msgid "Library"
 msgstr "Библиотека"
 
+#: umulauncher/ui/window.py:89 umulauncher/ui/window.py:130
 msgid "Add a game"
 msgstr "Добавить игру"
 
+#: umulauncher/ui/window.py:100
 msgid "Search library"
 msgstr "Поиск по библиотеке"
 
+#: umulauncher/ui/window.py:138
 msgid "No games yet"
 msgstr "Пока нет игр"
 
+#: umulauncher/ui/window.py:139
 msgid "Add a Windows game executable and launch it through umu-run."
 msgstr "Добавьте исполняемый файл Windows-игры и запускайте его через umu-run."
 
+#: umulauncher/ui/window.py:204
+#, python-format
 msgid "%d game"
 msgid_plural "%d games"
 msgstr[0] "%d игра"
 msgstr[1] "%d игры"
 msgstr[2] "%d игр"
 
+#: umulauncher/ui/window.py:206
+#, python-format
 msgid "%d running"
 msgstr "работает: %d"
 
+#: umulauncher/ui/window.py:208
+#, python-format
 msgid "%d of %d"
 msgstr "%d из %d"

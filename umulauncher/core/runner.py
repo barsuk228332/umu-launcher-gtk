@@ -151,6 +151,11 @@ def ensure_umu(umu_run: str = "umu-run") -> str:
     return found
 
 
+def effective_workdir(exe: str, workdir: str = "") -> str:
+    """Explicit working directory, or the folder that contains the executable."""
+    return workdir or str(Path(exe).parent)
+
+
 def log_path_for(title: str) -> Path:
     config.LOGS_DIR.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -187,7 +192,7 @@ class GameProcess:
         umu = ensure_umu(self.plan.umu_run)
         self.command = build_argv(self.plan, umu)
         env = build_env(self.plan)
-        cwd = self.plan.workdir or str(Path(self.plan.exe).parent)
+        cwd = effective_workdir(self.plan.exe, self.plan.workdir)
         if not Path(cwd).is_dir():
             cwd = str(Path.home())
 
